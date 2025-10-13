@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title or "Admin Dashboard" }}</title>
+  <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+  <header>
+    <h1>Admin Layout</h1>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

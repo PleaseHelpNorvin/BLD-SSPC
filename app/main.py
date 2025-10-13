@@ -1,11 +1,14 @@
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from app.controllers import 
+from flask import Flask
+from app.routes import register_routes
+import os
 
-app = FastAPI()
+# Set template folder relative to this file
+template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 
-# Mount static files (CSS/JS)
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
-# Include routers (controllers)
-app.include_router(HomeController.router)
+register_routes(app)
+
+if __name__ == "__main__":
+    app.run(debug=True)
