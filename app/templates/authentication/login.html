@@ -1,23 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>{{ page_title }}</title>
-        <link rel="stylesheet" href="/static/css/style.css">
-    </head>
-    <body>
-        <div style="max-width:400px; margin:80px auto; text-align:center;">
-            <h2>{{ page_title }}</h2>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
+        <h2 class="text-center mb-4">{{ page_title }}</h2>
 
-            {% if error %}
-                <p style="color:red;">{{ error }}</p>
-            {% endif %}
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-3 justify-content-center" id="loginTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="normal-tab" data-bs-toggle="tab" data-bs-target="#normal" type="button" role="tab" aria-controls="normal" aria-selected="true">Normal Login</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="qr-tab" data-bs-toggle="tab" data-bs-target="#qr" type="button" role="tab" aria-controls="qr" aria-selected="false">QR Login</button>
+            </li>
+        </ul>
 
-            <form action="/login" method="post">
-                <input type="text" name="username" placeholder="Username" required><br><br>
-                <input type="password" name="password" placeholder="Password" required><br><br>
-                <button type="submit">Login</button>
-            </form>
+        <!-- Tab contents -->
+        <div class="tab-content" id="loginTabsContent">
+            <!-- Normal Login Form -->
+            <div class="tab-pane fade show active" id="normal" role="tabpanel" aria-labelledby="normal-tab">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+                <form action="/login" method="post">
+                    <div class="mb-3">
+                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+
+            <!-- QR Login Form -->
+            <div class="tab-pane fade" id="qr" role="tabpanel">
+                <p class="text-center mb-3">Scan this QR code with your phone:</p>
+                <img src="{{ qr_code_img }}" class="d-block mx-auto mb-3" alt="QR Code">
+            </div>
         </div>
-    </body>
+    </div>
+
+    <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
