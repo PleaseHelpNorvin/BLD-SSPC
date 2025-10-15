@@ -7,11 +7,11 @@ router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 adminController = AdminController()  # ✅ instantiate it
 
-@router.get("/admin/test1", response_class=HTMLResponse)
+@router.get("/admin/dashboard", response_class=HTMLResponse)
 async def admin_test1(request: Request):
-    data = adminController.get_admin_data("test1")  # ✅ use the instance
+    data = adminController.get_admin_data("dashboard")  # ✅ use the instance
     return templates.TemplateResponse(
-        "admin_pages/admin_test_page.html",
+        "admin_pages/dashboard.html",
         {"request": request, **data}
     )
 
