@@ -1,6 +1,5 @@
-class base_controller:
+class BaseController:
     def __init__(self):
-        #controller level accessable sa mga mo gamit sa base controller
         self.app_name = "Document QR Manager"
 
     def get_app_name(self):

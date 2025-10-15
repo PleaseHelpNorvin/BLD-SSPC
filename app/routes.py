@@ -1,16 +1,24 @@
-from flask import render_template
-from app.controllers.example_controller import template_controller
+from fastapi import APIRouter, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from app.controllers.admin_controller import AdminController
 
-controller = template_controller()
-#diri ta mag routes mura pina laravel norben
-def register_routes(app):
-    
-    @app.route("/admin/test1")
-    def admin_test1():
-        data = controller.get_admin_data("test1")
-        return render_template("admin_pages/admin_test_page.html", **data)
+router = APIRouter()
+templates = Jinja2Templates(directory="app/templates")
+adminController = AdminController()  # ✅ instantiate it
 
-    @app.route("/admin/test2")
-    def admin_test2():
-        data = controller.get_admin_data("test2")
-        return render_template("admin_pages/admin_test_page2.html", **data)
+@router.get("/admin/test1", response_class=HTMLResponse)
+async def admin_test1(request: Request):
+    data = adminController.get_admin_data("test1")  # ✅ use the instance
+    return templates.TemplateResponse(
+        "admin_pages/admin_test_page.html",
+        {"request": request, **data}
+    )
+
+@router.get("/admin/test2", response_class=HTMLResponse)
+async def admin_test2(request: Request):
+    data = adminController.get_admin_data("test2")
+    return templates.TemplateResponse(
+        "admin_pages/admin_test_page2.html",
+        {"request": request, **data}
+    )

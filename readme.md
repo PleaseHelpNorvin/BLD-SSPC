@@ -1,0 +1,1 @@
+$ pip install -r C:\Users\AUKSILYO-07\Desktop\BLD-SSPC\requirements.txt

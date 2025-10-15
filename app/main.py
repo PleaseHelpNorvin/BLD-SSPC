@@ -1,14 +1,10 @@
-from flask import Flask
-from app.routes import register_routes
-import os
+# app/main.py
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from app.routes import router 
 
-# Set template folder relative to this file
-template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
-static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+app = FastAPI()
 
-app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
-register_routes(app)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+app.include_router(router)
