@@ -20,17 +20,30 @@ async def login_page(request: Request):
     )
     
 @router.get("/admin/dashboard", response_class=HTMLResponse)
-async def admin_test1(request: Request):
-    data = adminController.get_admin_data("dashboard") 
+async def admin_dashboard(request: Request):
+    data = adminController.get_admin_data("dashboard")
     return templates.TemplateResponse(
         "admin_pages/dashboard.html",
-        {"request": request, **data}
+        {
+            "request": request,
+            "page_title": "Dashboard",
+            "app_name": "Document QR Manager",
+            "current_path": request.url.path, 
+            **data
+        }
     )
+
 
 @router.get("/admin/test2", response_class=HTMLResponse)
 async def admin_test2(request: Request):
     data = adminController.get_admin_data("test2")
     return templates.TemplateResponse(
         "admin_pages/admin_test_page2.html",
-        {"request": request, **data}
+        {
+            "request": request,
+            "page_title": "Test Page 2",
+            "app_name": "Document QR Manager",
+            "current_path": request.url.path,
+            **data
+        }
     )

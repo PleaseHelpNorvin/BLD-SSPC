@@ -18,6 +18,7 @@ class AuthenticationController(BaseController):
             box_size=10,
             border=5
         )
+        
         qr.add_data(qr_data)
         qr.make(fit=True)
 
