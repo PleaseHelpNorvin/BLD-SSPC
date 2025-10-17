@@ -7,86 +7,10 @@
 
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', path='css/admin.css') }}">
-
-    <style>
-        /* Basic layout setup */
-        body {
-            margin: 0;
-            overflow: hidden; /* prevent body scroll */
-            font-family: system-ui, sans-serif;
-        }
-
-        /* Fixed Top Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1030;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 56px; /* height of navbar */
-            left: 0;
-            width: 220px;
-            height: calc(100vh - 56px);
-            background-color: #343a40;
-            color: #fff;
-            overflow-y: auto; /* scroll if content inside sidebar overflows */
-        }
-
-        .sidebar h6 {
-            padding: 15px 20px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            color: #adb5bd;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 10px 20px;
-            color: #adb5bd;
-            text-decoration: none;
-        }
-
-        .sidebar a:hover,
-        .sidebar a.active {
-            background-color: #495057;
-            color: #fff;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 56px; /* push down below navbar */
-            margin-left: 220px; /* push right beside sidebar */
-            height: calc(100vh - 56px); /* viewport height minus navbar and footer */
-            /* height: calc(100vh - 56px - 40px); viewport height minus navbar and footer */
-
-            overflow-y: auto; /* only main content scrolls */
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-
-        /* Footer */
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 220px;
-            width: calc(100% - 220px);
-            height: 40px;
-            background-color: #343a40;
-            color: #fff;
-            text-align: center;
-            line-height: 40px;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
 <body>
 
-    <!-- ✅ TOP NAV -->
+    <!-- TOP NAV -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="#">{{ app_name }}</a>
@@ -105,7 +29,7 @@
         </div>
     </nav>
 
-    <!-- ✅ SIDEBAR -->
+    <!-- SIDEBAR -->
 <aside class="sidebar">
     <h6>Menu</h6>
     <a href="/admin/dashboard" class="{% if '/admin/dashboard' in current_path %}active{% endif %}">
@@ -125,7 +49,7 @@
     </a>
 </aside>
 
-    <!-- ✅ MAIN CONTENT -->
+    <!-- MAIN CONTENT -->
     <main class="main-content">
         <div class="card shadow-sm">
             <div class="card-body">
@@ -135,7 +59,7 @@
         </div>
     </main>
 
-    <!-- ✅ FOOTER -->
+    <!-- FOOTER -->
     <!-- <footer>
         &copy; {{ app_name }} {{ now().year if now else '' }}
     </footer> -->
